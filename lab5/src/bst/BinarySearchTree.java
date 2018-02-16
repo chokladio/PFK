@@ -15,23 +15,32 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 
 	public static void main(String[] args) {
 		BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
+		System.out.println("size: " + bst.size + " Height:" + bst.height());
+		System.out.println("----------------");
+
 		bst.add(5);
 		bst.add(3);
 		bst.add(1);
 		bst.add(8);
-		bst.add(6);
+		bst.add(8); // dubblett
+		bst.add(9);
 		bst.add(4);
-		bst.add(7);
+		bst.add(18);
+		bst.add(42);
+		bst.add(-6);
 		bst.add(10);
 		bst.add(11);
 		bst.add(12);
 		bst.add(13);
 		bst.add(14);
+		bst.add(15);
+		bst.add(16);
 		bst.printTree();
+		System.out.println("----------------");
+		System.out.println("size: " + bst.size + " Height:" + bst.height());
 
-		 BSTVisualizer window = new BSTVisualizer("BinaryTree", 800, 600);
-		 window.drawTree(bst);
-
+		BSTVisualizer window = new BSTVisualizer("BinaryTree", 800, 600);
+		window.drawTree(bst);
 	}
 
 	/**
@@ -52,20 +61,21 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	}
 
 	private boolean addRec(BinaryNode<E> curNode, E x) {
-		if (x.compareTo(root.element) < 0) {
+		if (x.compareTo(curNode.element) < 0) {
 			if (curNode.left == null) {
 				curNode.left = new BinaryNode<E>(x);
+				size++;
 				return true;
 			}
 			return addRec(curNode.left, x);
-		} else if (x.compareTo(root.element) > 0) {
+		} else if (x.compareTo(curNode.element) > 0) {
 			if (curNode.right == null) {
 				curNode.right = new BinaryNode<E>(x);
+				size++;
 				return true;
 			}
 			return addRec(curNode.right, x);
 		}
-		System.out.println("nåt hände");
 		return false;
 	}
 
@@ -76,7 +86,6 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 */
 	public int height() {
 		return (heightRec(root));
-
 	}
 
 	private int heightRec(BinaryNode<E> node) { // treewalker
@@ -109,14 +118,14 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 			System.out.println(bn.element.toString());
 			inOrder(bn.right);
 		}
-
 	}
 
 	/**
 	 * Builds a complete tree from the elements in the tree.
 	 */
 	public void rebuild() {
-
+		E[] a = (E[]) new Comparable[size];
+		
 	}
 
 	/*
