@@ -1,14 +1,36 @@
 package bst;
 
+import bst.BinarySearchTree.BinaryNode;
+
 public class BinarySearchTree<E extends Comparable<? super E>> {
 	BinaryNode<E> root;
-
 	int size;
 
 	/**
 	 * Constructs an empty binary searchtree.
 	 */
 	public BinarySearchTree() {
+
+	}
+
+	public static void main(String[] args) {
+		BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
+		bst.add(5);
+		bst.add(3);
+		bst.add(1);
+		bst.add(8);
+		bst.add(6);
+		bst.add(4);
+		bst.add(7);
+		bst.add(10);
+		bst.add(11);
+		bst.add(12);
+		bst.add(13);
+		bst.add(14);
+		bst.printTree();
+
+		 BSTVisualizer window = new BSTVisualizer("BinaryTree", 800, 600);
+		 window.drawTree(bst);
 
 	}
 
@@ -21,29 +43,27 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 */
 	public boolean add(E x) {
 		if (root == null) { // om tom, skapa root
-			root.element = x;
+			root = new BinaryNode<E>(x);
+			size++;
 			return true;
 		} else {
 			return addRec(root, x);
 		}
 	}
 
-	private boolean addRec(BinaryNode curNode, E x) {
-		if (x.equals(curNode.element)) {
-			System.out.print("Du angav samma värde som roten");
-			return false;
-		} else if (x.compareTo(root.element) < 0) {
+	private boolean addRec(BinaryNode<E> curNode, E x) {
+		if (x.compareTo(root.element) < 0) {
 			if (curNode.left == null) {
-				curNode.left.element = x;
+				curNode.left = new BinaryNode<E>(x);
 				return true;
-			} else
-				addRec(curNode.left, x);
+			}
+			return addRec(curNode.left, x);
 		} else if (x.compareTo(root.element) > 0) {
 			if (curNode.right == null) {
-				curNode.right.element = x;
+				curNode.right = new BinaryNode<E>(x);
 				return true;
-			} else
-				addRec(curNode.right, x);
+			}
+			return addRec(curNode.right, x);
 		}
 		System.out.println("nåt hände");
 		return false;
@@ -55,15 +75,15 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * @return the height of the tree
 	 */
 	public int height() {
-		return (walker(root));
+		return (heightRec(root));
 
 	}
 
-	private int walker(BinaryNode<E> node) { // treewalker
+	private int heightRec(BinaryNode<E> node) { // treewalker
 		if (node == null) {
 			return 0;
 		} else {
-			return 1 + Math.max(walker(node.left), walker(node.right));
+			return 1 + Math.max(heightRec(node.left), heightRec(node.right));
 		}
 	}
 
@@ -80,6 +100,15 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * Print tree contents in inorder.
 	 */
 	public void printTree() {
+		inOrder(root);
+	}
+
+	private void inOrder(BinaryNode<E> bn) {
+		if (bn != null) {
+			inOrder(bn.left);
+			System.out.println(bn.element.toString());
+			inOrder(bn.right);
+		}
 
 	}
 

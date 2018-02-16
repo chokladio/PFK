@@ -19,6 +19,8 @@ public class BSTVisualizer {
 	// distance between node (circle) center and content string
 	private final static int OFFSET = -10;
 
+	
+	
 	/**
 	 * Creates a canvas with a certain title, width, height.
 	 */
