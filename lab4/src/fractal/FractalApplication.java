@@ -47,17 +47,10 @@ public class FractalApplication extends Application {
 
 	@Override
 	public void start(Stage stage) {
-<<<<<<< HEAD
 		Point p1 = new Point(1100, 450);
 		Point p2 = new Point(270, 700);
 		Point p3 = new Point(100, 100);
 		
-=======
-		Point p1 = new Point(550, 350);
-		Point p2 = new Point(200, 500);
-		Point p3 = new Point(150, 100);
-
->>>>>>> a1344f2e99703093c9bafe7ce0df29de1acfef3a
 		fractals = new Fractal[2];
 		fractals[0] = new Koch(200);
 		fractals[1] = new Mountain(p1, p2, p3, 120);

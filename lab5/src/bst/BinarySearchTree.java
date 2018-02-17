@@ -1,5 +1,9 @@
 package bst;
 
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.concurrent.TimeUnit;
+
 import bst.BinarySearchTree.BinaryNode;
 
 public class BinarySearchTree<E extends Comparable<? super E>> {
@@ -13,32 +17,36 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 
 	}
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InterruptedException {
 		BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
 
 		System.out.println("size: " + bst.size + " Height:" + bst.height());
-		System.out.println("----------------");
-		bst.add(7);
-		bst.add(3);
-		bst.add(1);
-		bst.add(-1002); //fixx
-		bst.add(8);
-		bst.add(8); // dubblett
-		bst.add(9);
-		bst.add(4);
-		bst.add(18);
-		bst.add(22);
-		bst.add(-6);
-		bst.add(6);
-		bst.add(10);bst.add(11);bst.add(12);bst.add(13);bst.add(14);bst.add(15);;
+//		bst.add(7);bst.add(3);bst.add(1);bst.add(-10);
+//		bst.add(8); // dubblett
+//		bst.add(8); //
+//		bst.add(9);bst.add(4);bst.add(18);bst.add(22);bst.add(-6);bst.add(6);	bst.add(11);bst.add(12);
+
+		ArrayList<Integer> list = new ArrayList<Integer>();
+        for (int i=0; i<200; i++) {
+            list.add(new Integer(i));
+        }
+        Collections.shuffle(list);
+        for (int i=0; i<100; i++) {
+            bst.add(list.get(i));
+        }
 
 		bst.printTree();
-		System.out.println("----------------");
+		System.out.println();
 		System.out.println("size: " + bst.size + " Height:" + bst.height() + "\n");
 		System.out.println("Rebuilding..");
-		BSTVisualizer window = new BSTVisualizer("BinaryTree", 800, 600);
+		BSTVisualizer window = new BSTVisualizer("BinaryTree", 1300, 600); // GUI
+		window.drawTree(bst);
+		
+		TimeUnit.SECONDS.sleep(10);
 		bst.rebuild();
-//		bst.printTree();
+
+		System.out.println("size: " + bst.size + " Height:" + bst.height());
+
 		window.drawTree(bst);
 	}
 
@@ -101,7 +109,7 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * @return the number of elements in this tree
 	 */
 	public int size() {
-		return this.size;
+		return size;
 	}
 
 	/**
@@ -114,7 +122,7 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	private void inOrder(BinaryNode<E> bn) {
 		if (bn != null) {
 			inOrder(bn.left);
-			System.out.println(bn.element.toString());
+			System.out.print(bn.element + "|");
 			inOrder(bn.right);
 		}
 	}
@@ -125,6 +133,8 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	public void rebuild() {
 		E[] a = (E[]) new Comparable[size];
 		toArray(root, a, 0);
+
+		root = buildTree(a, 0, size() - 1);
 	}
 
 	/*
@@ -133,20 +143,32 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * first empty position in a).
 	 */
 	private int toArray(BinaryNode<E> n, E[] a, int index) {
-		if (n != null) {
-			toArray(n.left, a, index + 1);
-			a[index] = n.element;
-			toArray(n.right, a, index + 1);
-		}
+		if (n.left != null) // Vi bryr oss bara om ifall det finns en left eller inte. Finns ingen left så
+							// läggs noden in och index ökar, annars fortsätter vi gå
+			index = toArray(n.left, a, index);
+		a[index] = n.element;
+		index++;
+
+		if (n.right != null)
+			index = toArray(n.right, a, index);
+
 		return index;
-	} 
+	}
 
 	/*
 	 * Builds a complete tree from the elements a[first]..a[last]. Elements in the
 	 * array a are assumed to be in ascending order. Returns the root of tree.
 	 */
 	private BinaryNode<E> buildTree(E[] a, int first, int last) {
-		return null;
+		int mid = (last + first) / 2;
+		BinaryNode<E> node = new BinaryNode<>(a[mid]);
+
+		if (mid - first > 0)// Finns någon till vänster?
+			node.left = buildTree(a, first, mid - 1);
+		if (mid - last < 0) // Finns någon till höger?
+			node.right = buildTree(a, mid + 1, last);
+
+		return node;
 	}
 
 	static class BinaryNode<E> {
