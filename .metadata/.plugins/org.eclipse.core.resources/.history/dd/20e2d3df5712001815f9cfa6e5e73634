@@ -1,0 +1,23 @@
+import java.util.awt.*;
+
+
+public class SodukuModel {
+	ObservableList<ObservableList<Integer>> matrix = FXCollections.<ObservableList<Integer>>observableArrayList();
+    for (int i = 0; i < 10; i++) {
+        final ObservableList<Integer> row = FXCollections.<Integer>observableArrayList();
+        matrix.add(i, row);
+        for (int j = 0; j < 10; j++) {
+            row.add(0);
+        }
+    }
+    
+    
+    public static void main(String[] args){
+		System.out.println("sudoku");
+	}
+    
+    
+	
+	
+	
+}

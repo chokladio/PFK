@@ -1,6 +1,5 @@
 package mountain;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 
 import fractal.*;
@@ -71,7 +70,7 @@ public class Mountain extends Fractal {
 	private Point checkMid(Point p1, Point p2, double r) {
 		Side s = new Side(p1, p2);
 		Point p = sides.get(s);
-
+		
 		if (p != null) {
 			return sides.remove(s);
 		} else {
@@ -79,7 +78,7 @@ public class Mountain extends Fractal {
 			sides.put(s, p);
 		}
 		return p;
-
+		
 	}
 
 	private Point mid(Point p1, Point p2, double r) {

@@ -1,0 +1,17 @@
+import java.util.Map;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+
+public class Main {
+	ObservableList<ObservableList<Integer>> matrix = FXCollections.<ObservableList<Integer>>observableArrayList();
+	
+	
+	public static void main(String[] args){
+		System.out.println("sudoku");
+	}
+
+	
+	
+
+}

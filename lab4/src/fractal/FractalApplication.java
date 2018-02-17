@@ -37,8 +37,8 @@ public class FractalApplication extends Application {
 	private Task<Void> fractalDrawTask;
 	private Group canvasWrapper;
 
-	final double fractalWidth = 600;
-	final double fractalHeight = 600;
+	final double fractalWidth = 1200;
+	final double fractalHeight = 750;
 
 	public static void main(String[] args) {
 		Application.launch(args);
@@ -46,13 +46,13 @@ public class FractalApplication extends Application {
 
 	@Override
 	public void start(Stage stage) {
-		Point p1 = new Point(550, 350);
-		Point p2 = new Point(200, 500);
-		Point p3 = new Point(150, 100);
+		Point p1 = new Point(1100, 450);
+		Point p2 = new Point(270, 700);
+		Point p3 = new Point(100, 100);
 		
 		fractals = new Fractal[2];
 		fractals[0] = new Koch(200);
-		fractals[1] = new Mountain(p1, p2, p3, 50);
+		fractals[1] = new Mountain(p1, p2, p3, 120);
 		actFractal = fractals[1];
 		BorderPane root = new BorderPane();
 		root.setBottom(addButtonBox());
