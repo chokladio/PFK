@@ -15,31 +15,30 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 
 	public static void main(String[] args) {
 		BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
+
 		System.out.println("size: " + bst.size + " Height:" + bst.height());
 		System.out.println("----------------");
-
-		bst.add(5);
+		bst.add(7);
 		bst.add(3);
 		bst.add(1);
+		bst.add(-1002); //fixx
 		bst.add(8);
 		bst.add(8); // dubblett
 		bst.add(9);
 		bst.add(4);
 		bst.add(18);
-		bst.add(42);
+		bst.add(22);
 		bst.add(-6);
-		bst.add(10);
-		bst.add(11);
-		bst.add(12);
-		bst.add(13);
-		bst.add(14);
-		bst.add(15);
-		bst.add(16);
+		bst.add(6);
+		bst.add(10);bst.add(11);bst.add(12);bst.add(13);bst.add(14);bst.add(15);;
+
 		bst.printTree();
 		System.out.println("----------------");
-		System.out.println("size: " + bst.size + " Height:" + bst.height());
-
+		System.out.println("size: " + bst.size + " Height:" + bst.height() + "\n");
+		System.out.println("Rebuilding..");
 		BSTVisualizer window = new BSTVisualizer("BinaryTree", 800, 600);
+		bst.rebuild();
+//		bst.printTree();
 		window.drawTree(bst);
 	}
 
@@ -125,7 +124,7 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 */
 	public void rebuild() {
 		E[] a = (E[]) new Comparable[size];
-		
+		toArray(root, a, 0);
 	}
 
 	/*
@@ -134,8 +133,13 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	 * first empty position in a).
 	 */
 	private int toArray(BinaryNode<E> n, E[] a, int index) {
-		return 0;
-	}
+		if (n != null) {
+			toArray(n.left, a, index + 1);
+			a[index] = n.element;
+			toArray(n.right, a, index + 1);
+		}
+		return index;
+	} 
 
 	/*
 	 * Builds a complete tree from the elements a[first]..a[last]. Elements in the
