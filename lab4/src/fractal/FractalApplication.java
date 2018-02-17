@@ -20,6 +20,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuBar;
 import javafx.scene.control.MenuItem;
+import javafx.scene.input.ScrollEvent;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
@@ -46,10 +47,17 @@ public class FractalApplication extends Application {
 
 	@Override
 	public void start(Stage stage) {
+<<<<<<< HEAD
 		Point p1 = new Point(1100, 450);
 		Point p2 = new Point(270, 700);
 		Point p3 = new Point(100, 100);
 		
+=======
+		Point p1 = new Point(550, 350);
+		Point p2 = new Point(200, 500);
+		Point p3 = new Point(150, 100);
+
+>>>>>>> a1344f2e99703093c9bafe7ce0df29de1acfef3a
 		fractals = new Fractal[2];
 		fractals[0] = new Koch(200);
 		fractals[1] = new Mountain(p1, p2, p3, 120);
@@ -62,6 +70,7 @@ public class FractalApplication extends Application {
 		stage.setScene(new Scene(root, fractalWidth, fractalHeight + 200));
 		stage.setTitle("Fraktaler");
 		stage.show();
+	
 	}
 
 	private MenuBar makeMenu() {
@@ -87,6 +96,7 @@ public class FractalApplication extends Application {
 		drawFractal();
 		return canvasWrapper;
 	}
+
 
 	private VBox addButtonBox() {
 		VBox vbox = new VBox();
@@ -133,7 +143,7 @@ public class FractalApplication extends Application {
 		if (fractalDrawTask != null && !fractalDrawTask.isDone()) {
 			fractalDrawTask.cancel(true);
 		}
-
+		
 		labelName.setText(actFractal.toString());
 
 		// Create a separate worker thread so the fractal drawing do not freeze the GUI
@@ -165,6 +175,9 @@ public class FractalApplication extends Application {
 							canvasWrapper.getChildren().add(canvas);
 						}
 					});
+					
+					
+					
 				} catch (ThreadDeath e) { // do nothing
 					// System.out.println("ber�kningen avbruten");
 				} catch (Throwable e) {

@@ -1,4 +1,9 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <typeInfoHistroy>
+<<<<<<< HEAD
 <typeInfo handle="=lab2/src&lt;queue_singlelinkedlist{FifoQueue.java[FifoQueue" modifiers="1" timestamp="1518693397066"/>
+=======
+<typeInfo handle="=lab2/src&lt;queue_singlelinkedlist{FifoQueue.java[FifoQueue" modifiers="1" timestamp="1518781353977"/>
+<typeInfo handle="=lab5/src&lt;bst{BinarySearchTree.java[BinarySearchTree" modifiers="1" timestamp="1518805442324"/>
+>>>>>>> a1344f2e99703093c9bafe7ce0df29de1acfef3a
 </typeInfoHistroy>
