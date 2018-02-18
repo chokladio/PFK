@@ -1,6 +1,7 @@
 package bst;
 
 import java.awt.Color;
+import java.util.concurrent.TimeUnit;
 
 import bst.BinarySearchTree.BinaryNode;
 import drawing.*;
@@ -28,8 +29,9 @@ public class BSTVisualizer {
 
 	/**
 	 * Draws a binary search tree on the canvas.
+	 * @throws InterruptedException 
 	 */
-	public void drawTree(BinarySearchTree<?> bst) {
+	public void drawTree(BinarySearchTree<?> bst) throws InterruptedException {
 		if (bst.root != null) {
 			canvas.erase();
 			VNode root = buildVTree(bst);
@@ -64,12 +66,14 @@ public class BSTVisualizer {
 		}
 	}
 
-	private void drawTree(VNode vnode, int level, int offset) {
+	private void drawTree(VNode vnode, int level, int offset) throws InterruptedException {
 		int col = 1 + vnode.left.width + offset;
 		int xPos = computeXpos(col);
 		int yPos = computeYpos(level);
 		int childYpos = computeYpos(level + 1);
-
+		TimeUnit.MILLISECONDS.sleep(70);
+		canvas.paint();
+		
 		if (vnode.left.node != null) {
 			int leftChildXpos = computeXpos(1 + vnode.left.left.width + offset);
 			canvas.drawLine(Color.BLUE, xPos, yPos, leftChildXpos, childYpos);
@@ -80,7 +84,9 @@ public class BSTVisualizer {
 			canvas.drawLine(Color.BLUE, xPos, yPos, rightChildXpos, childYpos);
 			drawTree(vnode.right, level + 1, col);
 		}
-
+		TimeUnit.MILLISECONDS.sleep(70);
+		canvas.paint();
+		
 		String text = String.valueOf(vnode.node.element);
 		canvas.fillCircle(Color.BLUE, xPos, yPos, DIAMETER);
 		canvas.drawString(Color.BLACK, text, xPos - 4, yPos + OFFSET);

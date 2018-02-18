@@ -4,8 +4,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.concurrent.TimeUnit;
 
-import bst.BinarySearchTree.BinaryNode;
-
 public class BinarySearchTree<E extends Comparable<? super E>> {
 	BinaryNode<E> root;
 	int size;
@@ -19,32 +17,36 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 
 	public static void main(String[] args) throws InterruptedException {
 		BinarySearchTree<Integer> bst = new BinarySearchTree<Integer>();
+		BSTVisualizer window = new BSTVisualizer("BinaryTree", 1800, 600); // GUI
 
-		System.out.println("size: " + bst.size + " Height:" + bst.height());
-//		bst.add(7);bst.add(3);bst.add(1);bst.add(-10);
-//		bst.add(8); // dubblett
-//		bst.add(8); //
-//		bst.add(9);bst.add(4);bst.add(18);bst.add(22);bst.add(-6);bst.add(6);	bst.add(11);bst.add(12);
+		// System.out.println("size: " + bst.size + " Height:" + bst.height());
+		// bst.add(7);bst.add(3);bst.add(1);bst.add(-10);
+		// bst.add(8); // dubblett
+		// bst.add(8); //
+		// bst.add(9);bst.add(4);bst.add(18);bst.add(22);bst.add(-6);bst.add(6);
+		// bst.add(11);bst.add(12);
 
 		ArrayList<Integer> list = new ArrayList<Integer>();
-        for (int i=0; i<200; i++) {
-            list.add(new Integer(i));
-        }
-        Collections.shuffle(list);
-        for (int i=0; i<100; i++) {
-            bst.add(list.get(i));
-        }
+		for (int i = 0; i < 200; i++) {
+			list.add(new Integer(i));
+		}
+		Collections.shuffle(list);
+		for (int i = 0; i < 80; i++) {
+			bst.add(list.get(i));
+		}
 
 		bst.printTree();
 		System.out.println();
 		System.out.println("size: " + bst.size + " Height:" + bst.height() + "\n");
-		System.out.println("Rebuilding..");
-		BSTVisualizer window = new BSTVisualizer("BinaryTree", 1300, 600); // GUI
+		System.out.println("Rebuilding in..");
 		window.drawTree(bst);
-		
-		TimeUnit.SECONDS.sleep(10);
-		bst.rebuild();
 
+		for (int i = 0; i < 8; i++) {
+			TimeUnit.SECONDS.sleep(1);
+			System.out.println(7 - i);
+		}
+		bst.rebuild();
+	
 		System.out.println("size: " + bst.size + " Height:" + bst.height());
 
 		window.drawTree(bst);
