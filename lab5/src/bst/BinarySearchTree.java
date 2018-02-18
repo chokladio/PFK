@@ -46,7 +46,7 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 			System.out.println(7 - i);
 		}
 		bst.rebuild();
-	
+
 		System.out.println("size: " + bst.size + " Height:" + bst.height());
 
 		window.drawTree(bst);
@@ -98,11 +98,11 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	}
 
 	private int heightRec(BinaryNode<E> node) { // treewalker
-		if (node == null) {
+		if (node == null)
 			return 0;
-		} else {
+		else
 			return 1 + Math.max(heightRec(node.left), heightRec(node.right));
-		}
+
 	}
 
 	/**
