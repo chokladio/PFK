@@ -71,7 +71,7 @@ public class BSTVisualizer {
 		int xPos = computeXpos(col);
 		int yPos = computeYpos(level);
 		int childYpos = computeYpos(level + 1);
-		TimeUnit.MILLISECONDS.sleep(70);
+		TimeUnit.MILLISECONDS.sleep(50);
 		canvas.paint();
 		
 		if (vnode.left.node != null) {
@@ -84,7 +84,7 @@ public class BSTVisualizer {
 			canvas.drawLine(Color.BLUE, xPos, yPos, rightChildXpos, childYpos);
 			drawTree(vnode.right, level + 1, col);
 		}
-		TimeUnit.MILLISECONDS.sleep(70);
+		TimeUnit.MILLISECONDS.sleep(50);
 		canvas.paint();
 		
 		String text = String.valueOf(vnode.node.element);
