@@ -31,7 +31,7 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 			list.add(new Integer(i));
 		}
 		Collections.shuffle(list);
-		for (int i = 0; i < 80; i++) {
+		for (int i = 0; i < 40; i++) {
 			bst.add(list.get(i));
 		}
 
@@ -41,7 +41,7 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 		System.out.println("Rebuilding in..");
 		window.drawTree(bst);
 
-		for (int i = 0; i < 8; i++) {
+		for (int i = 0; i < 5; i++) {
 			TimeUnit.SECONDS.sleep(1);
 			System.out.println(7 - i);
 		}
@@ -140,14 +140,13 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	}
 
 	/*
-	 * Adds all elements from the tree rooted at n in inorder to the array a
-	 * starting at a[index]. Returns the index of the last inserted element + 1 (the
-	 * first empty position in a).
+	 * Adds all elements from the tree rooted at n in inorder to the array a starting at a[index]. Returns the index of the last inserted element + 1 (the first empty position in
+	 * a).
 	 */
 	private int toArray(BinaryNode<E> n, E[] a, int index) {
 		if (n.left != null) // Vi bryr oss bara om ifall det finns en left eller inte. Finns ingen left så
-							// läggs noden in och index ökar, annars fortsätter vi gå
 			index = toArray(n.left, a, index);
+
 		a[index] = n.element;
 		index++;
 
@@ -158,8 +157,7 @@ public class BinarySearchTree<E extends Comparable<? super E>> {
 	}
 
 	/*
-	 * Builds a complete tree from the elements a[first]..a[last]. Elements in the
-	 * array a are assumed to be in ascending order. Returns the root of tree.
+	 * Builds a complete tree from the elements a[first]..a[last]. Elements in the array a are assumed to be in ascending order. Returns the root of tree.
 	 */
 	private BinaryNode<E> buildTree(E[] a, int first, int last) {
 		int mid = (last + first) / 2;

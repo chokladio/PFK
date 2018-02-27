@@ -1,5 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <section name="Workbench">
+	<item value="1" key="org.eclipse.jdt.uiformatter_pagemodify_dialog.last_focus"/>
+	<item value="false" key="org.eclipse.jdt.ui.formatter_page.show_invisible_characters"/>
+	<item value="0" key="org.eclipse.jdt.uiformatter_page.white_space_tab_page.node"/>
+	<item value="1015" key="org.eclipse.jdt.uiformatter_pagemodify_dialog.preferred_width"/>
+	<item value="887" key="org.eclipse.jdt.uiformatter_pagemodify_dialog.preferred_height"/>
+	<item value="94" key="org.eclipse.jdt.uiformatter_pagemodify_dialog.preferred_x"/>
+	<item value="52" key="org.eclipse.jdt.uiformatter_pagemodify_dialog.preferred_y"/>
+	<item value="1" key="org.eclipse.jdt.uiformatter_page.line_wrapping_tab_page.last_category_index"/>
+	<item value="0" key="org.eclipse.jdt.uiformatter_page.white_space.java_view.inner"/>
+	<item value="-1" key="org.eclipse.jdt.uiformatter_page.modify_dialog_tab_page.last_focus_index"/>
 	<item value="filter_imports;" key="filters_last_used"/>
 	<section name="org.eclipse.ltk.ui.refactoring.settings">
 		<item value="false" key="updateSimilarElements"/>
@@ -24,9 +34,9 @@
 		<item value="true" key="ShowStatusLine"/>
 		<item value="&lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&gt;&#x0D;&#x0A;&lt;History/&gt;" key="History"/>
 		<section name="DialogBoundsSettings">
-			<item value="314" key="DIALOG_WIDTH"/>
-			<item value="1|Calibri|9.75|0|WINDOWS|1|-13|0|0|0|400|0|0|0|1|0|0|0|0|Calibri" key="DIALOG_FONT_NAME"/>
-			<item value="516" key="DIALOG_HEIGHT"/>
+			<item value="286" key="DIALOG_WIDTH"/>
+			<item value="1|Segoe UI|9.0|0|WINDOWS|1|-12|0|0|0|400|0|0|0|1|0|0|0|0|Segoe UI" key="DIALOG_FONT_NAME"/>
+			<item value="523" key="DIALOG_HEIGHT"/>
 			<item value="-37" key="DIALOG_X_ORIGIN"/>
 			<item value="-31" key="DIALOG_Y_ORIGIN"/>
 		</section>
