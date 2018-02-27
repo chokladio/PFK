@@ -2458,3 +2458,6 @@ org.eclipse.recommenders.utils.Logs$LogTraceException
 	at org.eclipse.recommenders.internal.calls.rcp.RcpCallModelProvider.acquireModel(RcpCallModelProvider.java:1)
 	at org.eclipse.recommenders.internal.models.rcp.PrefetchModelArchiveJob.run(PrefetchModelArchiveJob.java:43)
 	at org.eclipse.core.internal.jobs.Worker.run(Worker.java:56)
+
+!ENTRY org.eclipse.core.resources 4 567 2018-02-27 15:07:40.867
+!MESSAGE The project description file (.project) for 'Sudoku' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
