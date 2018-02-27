@@ -1,12 +1,11 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=a743cdd4fb397768206bd880c24e4ab09e8e0f27
 IMPORT_FILES_AND_FOLDERS_RELATIVE=true
 IMPORT_FILES_AND_FOLDERS_TYPE=23,1
 PROBLEMS_FILTERS_MIGRATE=true
 TASKS_FILTERS_MIGRATE=true
 eclipse.preferences.version=1
-<<<<<<< HEAD
 platformState=1517858533249
-=======
-platformState=1508266486830
->>>>>>> a743cdd4fb397768206bd880c24e4ab09e8e0f27
 quickStart=false
 tipsAndTricks=true
