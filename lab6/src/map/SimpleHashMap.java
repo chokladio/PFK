@@ -70,12 +70,25 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 		}
 
 		Entry<K, V> e = new Entry(arg0, arg1);
-		size++;
+		if (size + 1 > capacity * loadFactor)
+			rehash();
+		else
+			size++;
 		return null;
 	}
-	
-	private rehash() {
-		
+
+	private void rehash() {
+		capacity += capacity;
+		Entry<K, V>[] tempT = table;
+		table = (Entry<K, V>[]) new Entry[capacity];
+		size=0;
+		for (Entry<K, V> e : tempT) {
+			while (e != null) {
+				put(e.getKey(), e.getValue());
+				e = e.next;
+			}
+
+		}
 	}
 
 	@Override
