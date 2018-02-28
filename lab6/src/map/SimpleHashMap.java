@@ -65,11 +65,23 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 
 	@Override
 	public V put(K arg0, V arg1) {
-		if (find(index(arg0), arg0) != null) {
-			return find(index(arg0), arg0).val;
-		}
+		int ind = index(arg0);
 
-		Entry<K, V> e = new Entry(arg0, arg1);
+		if (table[ind] == null) {
+			table[ind] = new Entry(arg0, arg1);
+		} else {
+			Entry<K, V> e = find(ind, arg0);
+			if (e != null) {
+				V oldVal = e.getValue();
+				e.setValue(arg1);
+				return oldVal;
+			}
+			e = table[ind];
+			while (e.next != null) {
+				e = e.next;
+			}
+		}
+		size++;
 		if (size + 1 > capacity * loadFactor)
 			rehash();
 		else
@@ -81,7 +93,7 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 		capacity += capacity;
 		Entry<K, V>[] tempT = table;
 		table = (Entry<K, V>[]) new Entry[capacity];
-		size=0;
+		size = 0;
 		for (Entry<K, V> e : tempT) {
 			while (e != null) {
 				put(e.getKey(), e.getValue());
