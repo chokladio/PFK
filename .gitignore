@@ -1,4 +1,5 @@
-*.metadata
+*.metadata/.plugins/
+*.metadata/
 *bin
 Sudoku/
 /.recommenders/
