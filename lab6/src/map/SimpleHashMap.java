@@ -1,5 +1,7 @@
 package map;
 
+import javafx.application.Application;
+
 public class SimpleHashMap<K, V> implements Map<K, V> {
 	Entry<K, V>[] table;
 	int size;
@@ -30,11 +32,35 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 		this.table = (Entry<K, V>[]) new Entry[capacity];
 	}
 
+	public static void main(String[] args) { // MAIN
+		SimpleHashMap<Integer, Integer> shm = new SimpleHashMap<>(10);
+		shm.put(12, 12);
+		shm.put(11, 11);
+		shm.put(-32, -32);
+		shm.put(2, 2);
+		shm.put(-1, -1);
+		shm.put(-2, -2);
+		
+		shm.put(15, 15);
+		shm.put(15, 12);
+	
+		
+		
+		System.out.println(shm.show());
+	}
+
 	public String show() {
 		StringBuilder sb = new StringBuilder();
+		int i = 0;
 		for (Entry<K, V> e : table) {
-			sb.append(e.toString());
+			sb.append(i);
+			while (e != null) {
+				sb.append("\t");
+				sb.append(e.getKey() + " = " + e.getValue());
+				e = e.next;
+			}
 			sb.append("\n");
+			i++;
 		}
 		return sb.toString();
 	}
@@ -48,19 +74,24 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 		return null;
 	}
 
+	@Override
+	public boolean isEmpty() {
+		// TODO Auto-generated method stub
+		return size() == 0;
+	}
+
 	private int index(K key) {
 		return Math.abs(key.hashCode()) % capacity; // googlade
 	}
 
 	private Entry<K, V> find(int index, K key) {
 		Entry<K, V> e = table[index];
-		return e != null ? e : null;
-	}
-
-	@Override
-	public boolean isEmpty() {
-		// TODO Auto-generated method stub
-		return size() == 0;
+		while (e != null) {
+			if (e.getKey().equals(key))
+				break;
+			e = e.next;
+		}
+		return e == null ? null : e;
 	}
 
 	@Override
@@ -68,7 +99,7 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 		int ind = index(arg0);
 
 		if (table[ind] == null) {
-			table[ind] = new Entry(arg0, arg1);
+			table[ind] = new Entry<K, V>(arg0, arg1);
 		} else {
 			Entry<K, V> e = find(ind, arg0);
 			if (e != null) {
@@ -80,12 +111,13 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 			while (e.next != null) {
 				e = e.next;
 			}
+			e.next = new Entry<K, V>(arg0, arg1);
 		}
 		size++;
-		if (size + 1 > capacity * loadFactor)
+		if (size > capacity * loadFactor) {
+			capacity *= 2;
 			rehash();
-		else
-			size++;
+		}
 		return null;
 	}
 
@@ -105,13 +137,13 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 
 	@Override
 	public V remove(Object arg0) {
-		// TODO Auto-generated method stub
+
 		return null;
 	}
 
 	@Override
 	public int size() {
-		return this.size();
+		return this.size;
 	}
 
 	private class Entry<K, V> implements Map.Entry<K, V> {
