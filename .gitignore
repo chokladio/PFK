@@ -1,5 +1,11 @@
 *.metadata/.plugins/
-*.metadata/
+*.metadata*
 *bin
 Sudoku/
 /.recommenders/
+.metadata/.log
+.metadata/.log
+.metadata/.log
+.metadata/.mylyn/tasks.xml.zip
+.metadata/.plugins/org.eclipse.core.resources/.projects/lab5/.markers
+.metadata/.plugins/org.eclipse.core.resources/.projects/lab4/.markers
