@@ -40,12 +40,10 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 		shm.put(2, 2);
 		shm.put(-1, -1);
 		shm.put(-2, -2);
-		
-		shm.put(15, 15);
-		shm.put(15, 12);
-	
-		
-		
+		shm.put(5, 5);
+		shm.put(10, 10);
+		shm.put(115, 115);
+
 		System.out.println(shm.show());
 	}
 
@@ -69,14 +67,11 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 	public V get(Object arg0) {
 		K key = (K) arg0;
 		Entry<K, V> e = find(index(key), key);
-		if (e != null)
-			return e.getValue();
-		return null;
+		return e == null ? null : e.getValue();
 	}
 
 	@Override
 	public boolean isEmpty() {
-		// TODO Auto-generated method stub
 		return size() == 0;
 	}
 
@@ -122,7 +117,7 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 	}
 
 	private void rehash() {
-		capacity += capacity;
+		// capacity += capacity;
 		Entry<K, V>[] tempT = table;
 		table = (Entry<K, V>[]) new Entry[capacity];
 		size = 0;
@@ -137,8 +132,29 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 
 	@Override
 	public V remove(Object arg0) {
-
-		return null;
+		K key = (K) arg0;
+		int i = index(key);
+		if (table[i] == null) // listan finns inte
+			return null;
+		else if (table[i].getKey().equals(key)) { // key är på första platsen
+			Entry<K, V> e = table[i];
+			table[i] = e.next;
+			size--;
+			return e.getValue();
+		} else { // Key finns senare i listan
+			Entry<K, V> cur = table[i];
+			Entry<K, V> nex = table[i].next;
+			while (nex != null) {
+				if (nex.getKey().equals(key)) {
+					cur.next = nex.next;
+					size--;
+					return nex.getValue();
+				}
+				cur = nex;
+				nex = nex.next;
+			}
+			return null; // key finns inte i listan
+		}
 	}
 
 	@Override
