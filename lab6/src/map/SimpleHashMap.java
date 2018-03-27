@@ -126,10 +126,10 @@ public class SimpleHashMap<K, V> implements Map<K, V> {
 				put(e.getKey(), e.getValue());
 				e = e.next;
 			}
-
 		}
 	}
-
+	
+	
 	@Override
 	public V remove(Object arg0) {
 		K key = (K) arg0;
